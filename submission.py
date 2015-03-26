@@ -33,6 +33,14 @@ class IamA:
 		print "obtained all comments"
 		self.tracked_usernames.append(submission.author.name)
 
+		for words in submission.selftext.split():
+			if words.startswith("/u/"):
+				self.tracked_usernames.append(words[3:])
+			elif words.startswith("u/"):
+				self.tracked_usernames.append(words[2:])
+
+		print "tracking", self.tracked_usernames
+
 		comments = submission.comments
 		#print comments
 		for item in comments:
